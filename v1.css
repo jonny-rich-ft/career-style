@@ -1,64 +1,26 @@
-/* Freetrade x Ashby — Dark Mode pass 1
-   - Color-only & typography-only changes
-   - No layout adjustments
-   - Targets stable .ashby-* classnames + CSS vars
-*/
+/* Freetrade x Ashby — Dark Mode (selectors from the example only) */
 
-/* -----------------------------
-   Global variables override
-------------------------------*/
+/* 1) Variables the job board actually consumes */
 :root {
-  /* App background → dark */
   --colorAppBackground: var(--freetrade-black);
-
-  /* Keep existing primary color vars unless you want to change them:
-     --colorPrimary900 / --colorPrimary600
-  */
-
-  /* Keep radii/widths as-is (no layout changes) */
+  /* keep widths/radii unless you want to change layout */
+  /* --widthMaxJobBoard: 800px; */
+  /* --borderRadiusContainer: 10px; */
+  /* --borderRadiusControl: 10px; */
+  /* --borderRadiusButton: 10px; */
+  /* --fontFamily: ... (leave as is) */
 }
 
-/* Ensure the job board surface adopts the dark app background */
+/* 2) Headings */
 .ashby-job-board-heading,
-.ashby-job-posting-left-pane,
-.ashby-job-posting-right-pane,
-.ashby-application-form-container,
-.ashby-application-form-section-container,
-.ashby-survey-form-container {
-  background: transparent;
-}
-
-/* If Ashby applies a white panel container, force it dark */
-.ashby-job-posting-brief-list,
-.ashby-job-posting-left-pane,
-.ashby-job-posting-right-pane,
-.ashby-application-form-container {
-  color: var(--_tokens-colour---text--secondary);
-}
-
-/* -----------------------------
-   Headings & body text colors
-------------------------------*/
-
-/* Main page heading + counts */
-.ashby-job-board-heading,
-.ashby-job-board-heading-count {
-  color: var(--freetrade-white);
-}
-
-/* Department & team headings */
-.ashby-department-heading,
-.ashby-department-heading-level {
-  color: var(--freetrade-white);
-}
-
-/* Job cards: titles as headings, details as body text */
-.ashby-job-posting-brief-title,
 .ashby-job-posting-heading,
-.ashby-job-posting-header {
+.ashby-department-heading,
+.ashby-department-heading-level,
+.ashby-job-posting-brief-title {
   color: var(--freetrade-white);
 }
 
+/* 3) Body / secondary copy */
 .ashby-job-posting-brief-details,
 .ashby-job-board-filters-label,
 .ashby-job-board-reset-filters-label,
@@ -70,9 +32,7 @@
   color: var(--_tokens-colour---text--secondary);
 }
 
-/* -----------------------------
-   Links
-------------------------------*/
+/* 4) Links */
 .ashby-job-posting-brief a,
 .ashby-job-posting-left-pane a,
 .ashby-job-posting-right-pane a,
@@ -81,110 +41,34 @@
   text-decoration-color: var(--freetrade-pink);
 }
 
-/* -----------------------------
-   Borders & card chrome
-------------------------------*/
-
-/* Job card container */
+/* 5) Borders / surfaces */
 .ashby-job-posting-brief {
-  background: transparent;
   border: 1px solid var(--darkest-grey);
-  border-radius: var(--borderRadiusContainer, 10px);
+  background: transparent;
 }
 
-/* Filters / selects */
 .ashby-job-board-filter {
   background: var(--freetrade-black);
   color: var(--_tokens-colour---text--secondary);
   border: 1px solid var(--darkest-grey);
-  border-radius: var(--borderRadiusControl, 10px);
 }
 
-/* Right-pane tabs underline/slider often uses a border; darken it */
-.ashby-job-posting-right-pane-tab-slider {
-  background: var(--darkest-grey);
-}
-
-/* Inputs in application form */
 .ashby-application-form-field-entry input,
 .ashby-application-form-field-entry select,
 .ashby-application-form-field-entry textarea {
   background: var(--freetrade-black);
   color: var(--_tokens-colour---text--secondary);
   border: 1px solid var(--darkest-grey);
-  border-radius: var(--borderRadiusControl, 10px);
 }
 
-/* -----------------------------
-   Buttons
-------------------------------*/
-
-/* Primary submit / nav buttons */
+/* 6) Buttons (text: DM Mono, all caps) */
 .ashby-application-form-submit-button,
 .ashby-job-board-back-to-all-jobs-button,
-.ashby-job-posting-right-pane-application-tab [role="button"],
-.ashby-job-posting-right-pane-overview-tab [role="button"],
 .ashby-job-board-reset-filters-label {
   background: var(--_base-colour---core-colours--accent--500);
   color: var(--freetrade-white);
   border: 1px solid var(--_base-colour---core-colours--accent--500);
-  border-radius: var(--borderRadiusButton, 10px);
   font-family: var(--dm-mono, monospace);
   text-transform: uppercase;
   letter-spacing: 0.04em;
-}
-
-/* Hover/active/focus states (accessible on dark) */
-.ashby-application-form-submit-button:hover,
-.ashby-job-board-back-to-all-jobs-button:hover,
-.ashby-job-board-reset-filters-label:hover {
-  filter: brightness(1.06);
-}
-
-.ashby-application-form-submit-button:active,
-.ashby-job-board-back-to-all-jobs-button:active,
-.ashby-job-board-reset-filters-label:active {
-  filter: brightness(0.96);
-}
-
-/* Keyboard focus ring contrast on dark */
-.ashby-application-form-submit-button:focus-visible,
-.ashby-job-board-back-to-all-jobs-button:focus-visible,
-.ashby-job-board-filter:focus-visible,
-.ashby-application-form-field-entry input:focus-visible,
-.ashby-application-form-field-entry select:focus-visible,
-.ashby-application-form-field-entry textarea:focus-visible,
-.ashby-job-posting-brief a:focus-visible {
-  outline: 2px solid var(--freetrade-pink);
-  outline-offset: 2px;
-}
-
-/* -----------------------------
-   Footer “Powered by” strip
-------------------------------*/
-footer[class*="_embedded_"] {
-  background: transparent;
-  border-top: 1px solid var(--darkest-grey);
-  color: var(--_tokens-colour---text--secondary);
-}
-footer[class*="_embedded_"] a {
-  color: var(--freetrade-pink);
-}
-
-/* -----------------------------
-   Accessibility tweaks
-------------------------------*/
-
-/* Ensure status/live regions inherit dark text color */
-[role="status"][aria-live] {
-  color: var(--_tokens-colour---text--secondary);
-}
-
-/* Toasts / alerts borders on dark */
-[class*="_toasts_"] {
-  color: var(--_tokens-colour---text--secondary);
-}
-.ashby-application-form-autofill-input-form-alert {
-  border: 1px solid var(--darkest-grey);
-  background: var(--freetrade-black);
 }

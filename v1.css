@@ -1,26 +1,37 @@
-/* Freetrade x Ashby — Dark Mode (selectors from the example only) */
-
-/* 1) Variables the job board actually consumes */
 :root {
+  /* Freetrade tokens (provide fallbacks so it still renders) */
+  --freetrade-black: #0b0b0c;
+  --freetrade-white: #ffffff;
+  --freetrade-pink: #ff2d5e;
+
+  --darkest-grey: #2a2d32;
+
+  /* Accent 500 fallback */
+  --_base-colour---core-colours--accent--500: #ff2d5e;
+
+  /* Secondary text fallback */
+  --_tokens-colour---text--secondary: #c0c4cc;
+
+  /* Optional: DM Mono */
+  --dm-mono: ui-monospace, "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  /* Also set Ashby’s background var */
   --colorAppBackground: var(--freetrade-black);
-  /* keep widths/radii unless you want to change layout */
-  /* --widthMaxJobBoard: 800px; */
-  /* --borderRadiusContainer: 10px; */
-  /* --borderRadiusControl: 10px; */
-  /* --borderRadiusButton: 10px; */
-  /* --fontFamily: ... (leave as is) */
 }
 
-/* 2) Headings */
+
+/* Headings / titles */
 .ashby-job-board-heading,
-.ashby-job-posting-heading,
+.ashby-job-board-heading-count,
 .ashby-department-heading,
 .ashby-department-heading-level,
-.ashby-job-posting-brief-title {
+.ashby-job-posting-brief-title,
+.ashby-job-posting-heading,
+.ashby-job-posting-header {
   color: var(--freetrade-white);
 }
 
-/* 3) Body / secondary copy */
+/* Body / secondary copy */
 .ashby-job-posting-brief-details,
 .ashby-job-board-filters-label,
 .ashby-job-board-reset-filters-label,
@@ -32,7 +43,7 @@
   color: var(--_tokens-colour---text--secondary);
 }
 
-/* 4) Links */
+/* Links */
 .ashby-job-posting-brief a,
 .ashby-job-posting-left-pane a,
 .ashby-job-posting-right-pane a,
@@ -41,7 +52,7 @@
   text-decoration-color: var(--freetrade-pink);
 }
 
-/* 5) Borders / surfaces */
+/* Cards/borders/surfaces */
 .ashby-job-posting-brief {
   border: 1px solid var(--darkest-grey);
   background: transparent;
@@ -53,6 +64,7 @@
   border: 1px solid var(--darkest-grey);
 }
 
+/* Application inputs */
 .ashby-application-form-field-entry input,
 .ashby-application-form-field-entry select,
 .ashby-application-form-field-entry textarea {
@@ -61,14 +73,17 @@
   border: 1px solid var(--darkest-grey);
 }
 
-/* 6) Buttons (text: DM Mono, all caps) */
+/* Buttons */
 .ashby-application-form-submit-button,
 .ashby-job-board-back-to-all-jobs-button,
 .ashby-job-board-reset-filters-label {
   background: var(--_base-colour---core-colours--accent--500);
   color: var(--freetrade-white);
   border: 1px solid var(--_base-colour---core-colours--accent--500);
-  font-family: var(--dm-mono, monospace);
+  font-family: var(--dm-mono);
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
+
+/* Background */
+body { background: var(--colorAppBackground); }
